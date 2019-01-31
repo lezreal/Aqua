@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layouts/main">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+    
+
+</script>
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+</head>
+<body>
+<div th:if="!${mindenok}" layout:fragment="infoBar">
+      <h1>Válassza ki az Önnek megfelelő időpontot</h1>
+      <p>Amennyiben a rendelése 12 óra előtt történik, lehetősége van még a mai napon megkapni a terméket!
+      Más esetben a kiszállításra legközelebb a holnapi nap választható.
+      Köszönjük!</p>
+      
+      </div>
+<div layout:fragment="workBar">
+<div class="bootstrap-iso">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-6 col-sm-6 col-xs-12">
+
+    <!-- Form code begins -->
+    <form method="get" action="/datum">
+      <div class="form-group"> <!-- Date input -->
+       <h1> <label class="control-label" for="date">Dátum</label></h1>
+        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+      </div>
+      <div th:if="${rosszdatum}" class="alert alert-danger" role="alert">Kérem, töltse ki a dátumot!</div>
+      <div th:if="${mainapnemjo}" class="alert alert-danger" role="alert">A mai napra már sajnos nem tudjuk vállalni a kiszállítást</div>
+<div class="container-fluid">
+  <h1><label class="control-label" for="date">Időpont választás</label></h1>
+  <div class="row">
+    <div class="col-sm-3 col-md-6" style="background-color:yellow;">
+      <h2>Időponttól</h2>
+      
+  <div>
+    <select class="selectpicker" data-style="btn-info" name="idoponttol">
+  <option><a href="#">12:00</a></option>
+  <option><a href="#">13:00</a></option>
+  <option><a href="#">14:00</a></option>
+  <option><a href="#">15:00</a></option>
+  <option><a href="#">16:00</a></option>
+  <option><a href="#">17:00</a></option>
+</select>
+<br><br><br>
+  </div>
+    </div>
+    <div class="col-sm-9 col-md-6" style="background-color:pink;">
+       <h2>Időpontig</h2>
+  <div class="dropdown">
+    
+    <select class="selectpicker" data-style="btn-info" name="idopontig">
+	  <option><a href="#">13:00</a></option>
+	  <option><a href="#">14:00</a></option>
+	  <option><a href="#">15:00</a></option>
+	  <option><a href="#">16:00</a></option>
+	  <option><a href="#">17:00</a></option>
+	  <option><a href="#">18:00</a></option>
+	</select>
+    <br><br><br>
+    
+  </div>
+    </div>
+  </div>
+  
+</div>
+       <br>
+  
+
+<div th:if="${rosszidopont}" class="alert alert-danger" role="alert">Az időintervallum rosszul lett megadva!</div>
+  
+      <div class="form-group"> <!-- Submit button -->
+        <button class="btn btn-primary " name="submit" type="submit">Küldés</button>
+      </div>
+     </form>
+     <!-- Form code ends --> 
+
+    </div>
+  </div>    
+ </div>
+</div>
+
+
+</div>
+</body>
+</html>

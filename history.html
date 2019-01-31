@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layouts/main">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="infoBar">
+
+
+
+<h2><u>Az Ön rendelési előzménye</u></h2>
+</div>
+
+<div layout:fragment="workBar">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Dátum</th>
+      <th scope="col">Cím</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="barmi:${rendeles}">
+      <th scope="row">1</th>
+      <td th:text="${barmi.date}"><p></p></td>
+      <td th:text="${barmi.time}">@mdo</td>
+    </tr>
+  
+  </tbody>
+</table>
+
+</div>
+
+</body>
+</html>

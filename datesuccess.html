@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layouts/main">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div layout:fragment="infoBar">
+<h2>Véglegesítse megrendelését!</h2>
+      
+      
+</div>
+<div layout:fragment="workBar">
+<div class="container">
+<div class="wrap-contact100">
+  <h3>Rendelése adatai:</h2>
+  <div class="panel-group">
+<form action="/datumfix" method="get">
+    
+    <div class="panel panel-primary col-sm-8">
+      <div class="panel-heading">Érkezési dátum</div>
+      <div class="panel-body" th:text="${datum}" >Panel Content</div>
+      
+    </div>
+
+    <div class="panel panel-success col-sm-8">
+      <div class="panel-heading">Érkezési időtartomány</div>
+      <div class="panel-body" th:text="${idotartomany}" name="ido">Panel Content</div>
+    
+    </div>
+    
+    <div class="panel panel-success col-sm-8">
+      <div class="panel-heading">Szállítási cím (módosítható)</div>
+      <div class="panel-body"><input type="text" th:value="${szallcim}" name="szall_cim_uj" size="100"></input></div>
+    </div>
+
+    <div class="panel panel-success col-sm-8">
+      <div class="panel-heading">Megjegyzés (módosítható)</div>
+      <div class="panel-body"><input type="text" th:value="${comment}" name="comment_uj" size="100"></input></div>
+    </div>
+
+    
+    <!-- rejtett mezők -->
+      
+      <input type="hidden" th:value="${datum}" name="datum"></input>
+      <input type="hidden" th:value="${idotartomany}" name="ido"></input>
+      
+      
+    <!-- rejtett mezők -->
+    
+      
+  </div>
+</div>
+<br>
+  <div class="col-sm-8">
+  <button type="submit" class="btn btn-primary btn-lg">MEGRENDELÉS</button>
+  </form>
+  <br><br><br>
+  </div>
+  </div> 
+</div>
+
+</body>
+</html>

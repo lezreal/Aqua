@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hu"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" layout:decorator="layouts/main">
+<head>
+<meta charset="UTF-8">
+<title>Index oldal</title>
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div layout:fragment="infoBar">
+<h1>Üdvözöljük leendő Ügyfelünket!</h1>
+      <p>Amennyiben regisztrál az oldalunkra, lehetősége lesz a weboldalon keresztüli rendelésre, amely megbízhatóbb és költséghatékonyabb,<br>
+      mint a telefonos rendelés. Az adatok egyszeri megadásával a későbbiekben néhány kattintás elegendő lesz, és már szállítjuk is a terméket az Önnek megfelelő időpontban.
+      </p>
+      </div>
+
+<div layout:fragment="workBar">
+<form class="form-horizontal" th:action="@{/regToDb}" method="post" th:object="${user}">
+  <div class="form-group">
+  	
+    <label class="control-label col-sm-2" for="email">Email:</label>
+    <div class="col-sm-5">
+      <input type="email" class="form-control" id="email" placeholder="Enter email" th:field="*{email}" required="true">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <div class="col-sm-5"> 
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" th:field="*{password}" required="true">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Password again:</label>
+    
+    <div class="col-sm-5" > 
+      <input type="password" class="form-control " id="pwd" placeholder="Re-enter password" name="repass" required="true">
+    </div>
+  </div>
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+    <div th:if="${jelszohiba}" class="alert alert-danger" role="alert">A jelszavak nem egyeznek!</div>
+    <div th:if="${letezoemail}" class="alert alert-danger" role="alert">Ez az email cím már regisztrálva van!</div>
+    <div th:if="${sikeresreg}" class="alert alert-success" role="alert">Sikeres regisztráció! Az aktiváláshoz kérjük kattintson a linkre a tőlünk kapott emailben.</div>
+      <button type="submit" class="btn  btn-primary btn-lg">Rögzítés</button>
+    </div>
+  </div>
+</form>
+</div>
+
+</body>
+</html>
